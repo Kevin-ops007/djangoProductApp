@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Product List</title>
+  {% load bootstrap5 %}
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+</head>
+<body>
+
+<div class="container my-4">
+    <form method="get" class="mb-4">
+        <div class="form-group mb-2">
+            <input type="text" class="form-control" name="q" placeholder="Search by description">
+        </div>
+        <div class="form-group mb-2">
+            <select name="category" class="form-control">
+                <option value="">All Categories</option>
+                {% for category in categories %}
+                    <option value="{{ category.id }}">{{ category.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group mb-2">
+            {% for tag in tags %}
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" name="tags" value="{{ tag.id }}" id="tag-{{ tag.id }}">
+                    <label class="form-check-label" for="tag-{{ tag.id }}">{{ tag.name }}</label>
+                </div>
+            {% endfor %}
+            
+        </div>
+        <div class="d-flex align-items-center">
+            <button type="submit" class="btn btn-primary me-2">Search</button>
+            <a href="?" class="btn btn-secondary">Clear</a> <!-- Clear Button -->
+        </div>
+    </form>
+
+    <div class="row">
+        {% for product in products %}
+            <div class="col-md-3 mb-4">
+                <div class="card h-100">
+                    {% if product.image %}
+                        {% load static %}
+                        {% with "images/"|add:product.image.url as image_path %}
+                            <img  src="{% static image_path %}" class="card-img-top" alt="{{ product.name }}">
+                        {% endwith %}
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <p class="card-text">{{ product.description }}</p>
+                        <p><strong>Category:</strong> {{ product.category.name }}</p>
+                        <p><strong>Tags:</strong> 
+                            {% for tag in product.tags.all %}
+                                {{ tag.name }}{% if not forloop.last %}, {% endif %}
+                            {% endfor %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            {% if forloop.counter|divisibleby:4 and not forloop.last %}
+                </div><div class="row">
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+</body>
+</html>

@@ -4,10 +4,24 @@ from .models import Product, Category, Tag
 
 
 def index(request):
-    return HttpResponse("Hello, world. You're at the polls index.")
+    return HttpResponse("Hello, world. You're at the product page.")
 
 
 def product_list(request):
+    """
+    View that handles displaying a list of products with optional search and filtering by
+    category and tags.
+
+    Args:
+        request: The HTTP request object with potential GET parameters for filtering:
+            - q: Query string for searching product descriptions.
+            - category: ID of the category for filtering.
+            - tags: List of tag IDs for filtering.
+
+    Returns:
+        HttpResponse: Rendered HTML page displaying the filtered list of products,
+        available categories, and tags.
+    """
     products = Product.objects.all()
     query = request.GET.get("q")
     category_id = request.GET.get("category")

@@ -1,6 +1,6 @@
 # Django Product Search and Filter Project
 
-This project is a simple product listing and filtering application built using Django. It allows users to search and filter products by description, category, and tags. The project demonstrates basic CRUD operations, model relationships, and search and filtering functionality using Django's ORM. Additionally, it uses Django Bootstrap for styling the frontend interface.
+This project is a simple product listing and filtering application built using Django. It allows users to search and filter products by description, category, and tags. The project demonstrates basic CRUD operations, model relationships, and search and filtering functionality using Django's ORM. Additionally, it uses Django Bootstrap for styling the frontend interface. Also the sample data is populated using the Django admin panel.
 
 ## Getting Started
 

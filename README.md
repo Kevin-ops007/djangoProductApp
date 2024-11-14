@@ -47,5 +47,3 @@ The project uses Django Bootstrap for styling, providing a responsive and user-f
 
 - **Category and Tags**: For simplicity, it is assumed that categories and tags only have a name property, without an ID field for filtering purposes.
   These assumptions were made to streamline the project and demonstrate basic functionality without introducing unnecessary complexity.
-
-      These assumptions were made to streamline the project and demonstrate basic functionality without introducing unnecessary complexity.
